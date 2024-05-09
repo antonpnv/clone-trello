@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/prefer-default-export
 export function createNewItem(value) {
   const newItem = document.createElement('div');
   newItem.classList.add('list__item');

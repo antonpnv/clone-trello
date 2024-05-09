@@ -1,3 +1,5 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable import/no-cycle */
 import { createNewItem } from './utils';
 import { saveState } from './stateManager';
 
@@ -47,7 +49,11 @@ export function addTask(column) {
     const isClickInsideAddBtn = addBtn.contains(event.target);
     const isClickInsideCancelBtn = cancelBtn.contains(event.target);
 
-    if (!isClickInsideForm && !isClickInsideBtn && !isClickInsideTextArea && !isClickInsideAddBtn && !isClickInsideCancelBtn) {
+    if (!isClickInsideForm
+        && !isClickInsideBtn
+        && !isClickInsideTextArea
+        && !isClickInsideAddBtn
+        && !isClickInsideCancelBtn) {
       resetForm();
     }
   });
@@ -59,8 +65,8 @@ export function dragNDrop() {
   const lists = document.querySelectorAll('.list');
   const listItems = document.querySelectorAll('.list__item');
 
-  listItems.forEach(item => {
-    item.addEventListener('dragstart', (e) => {
+  listItems.forEach((item) => {
+    item.addEventListener('dragstart', () => {
       item.classList.add('dragging');
     });
 
@@ -76,7 +82,7 @@ export function dragNDrop() {
     });
   });
 
-  lists.forEach(list => {
+  lists.forEach((list) => {
     list.addEventListener('dragover', (e) => {
       e.preventDefault();
       const draggingItem = document.querySelector('.dragging');
@@ -97,9 +103,8 @@ export function getDragAfterElement(list, y) {
     const box = child.getBoundingClientRect();
     const offset = y - box.top - box.height / 2;
     if (offset < 0 && offset > closest.offset) {
-      return { offset: offset, element: child };
-    } else {
-      return closest;
+      return { offset, element: child };
     }
+    return closest;
   }, { offset: Number.NEGATIVE_INFINITY }).element;
 }

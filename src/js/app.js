@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { addTask, dragNDrop, getDragAfterElement } from './taskManager';
 import { saveState, restoreState } from './stateManager';
 
